@@ -1,0 +1,112 @@
+{
+    // 已有的文件关联（保持不变）
+    "files.associations": {
+        "random": "cpp",
+        "algorithm": "cpp",
+        "array": "cpp",
+        "atomic": "cpp",
+        "bit": "cpp",
+        "cctype": "cpp",
+        "cerrno": "cpp",
+        "cfloat": "cpp",
+        "chrono": "cpp",
+        "climits": "cpp",
+        "clocale": "cpp",
+        "cmath": "cpp",
+        "codecvt": "cpp",
+        "cstdarg": "cpp",
+        "cstddef": "cpp",
+        "cstdint": "cpp",
+        "cstdio": "cpp",
+        "cstdlib": "cpp",
+        "cstring": "cpp",
+        "ctime": "cpp",
+        "cwchar": "cpp",
+        "cwctype": "cpp",
+        "deque": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "vector": "cpp",
+        "exception": "cpp",
+        "filesystem": "cpp",
+        "functional": "cpp",
+        "iterator": "cpp",
+        "memory": "cpp",
+        "memory_resource": "cpp",
+        "numeric": "cpp",
+        "optional": "cpp",
+        "ratio": "cpp",
+        "string_view": "cpp",
+        "system_error": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp",
+        "fstream": "cpp",
+        "initializer_list": "cpp",
+        "iomanip": "cpp",
+        "ios": "cpp",
+        "iosfwd": "cpp",
+        "iostream": "cpp",
+        "istream": "cpp",
+        "limits": "cpp",
+        "locale": "cpp",
+        "new": "cpp",
+        "ostream": "cpp",
+        "queue": "cpp",
+        "sstream": "cpp",
+        "stdexcept": "cpp",
+        "streambuf": "cpp",
+        "cinttypes": "cpp",
+        "typeinfo": "cpp",
+        "charconv": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "format": "cpp",
+        "xfacet": "cpp",
+        "xiosbase": "cpp",
+        "xlocale": "cpp",
+        "xlocbuf": "cpp",
+        "xlocinfo": "cpp",
+        "xlocmes": "cpp",
+        "xlocmon": "cpp",
+        "xlocnum": "cpp",
+        "xloctime": "cpp",
+        "xmemory": "cpp",
+        "xstring": "cpp",
+        "xtr1common": "cpp",
+        "xutility": "cpp"
+    },
+
+    // ===========================
+    // clangd 智能感知：盯住一个主构建目录
+    // 平常编码时使用，可根据当前主要工作切换
+    // 切换后执行 clangd: Restart language server 即可
+    // ===========================
+    "clangd.arguments": [
+        // 默认跟随 GCC-64，你可以改为其他目录：
+        // "build/gcc-32"、"build/msvc-32"、"build/msvc-64"、"build/clang-64"、"build/gcc-64-ucrt" 等
+        "--compile-commands-dir=${workspaceFolder}/build/gcc-64",
+
+        // 以下参数与用户级保持同步（在此显式声明，避免遗漏）
+        "--background-index",
+        "--pch-storage=disk",
+        "--all-scopes-completion",
+        "--completion-style=detailed",
+        "--limit-references=1000",
+        "--header-insertion=iwyu",
+        "--header-insertion-decorators",
+        "--fallback-style=Google",
+        "--clang-tidy",
+        "--log=error"
+    ],
+
+    // ===========================
+    // CMake Tools 默认生成器（当通过状态栏或命令面板配置时使用）
+    // 日常构建依赖 tasks，这里只作为“后台配置”的默认值
+    // ===========================
+    "cmake.generator": "MinGW Makefiles",
+    "Codegeex.EnableExtension":false,
+    "[cpp]": {
+        "editor.formatOnSave": false,
+    },
+}

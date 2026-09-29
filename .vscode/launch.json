@@ -1,0 +1,212 @@
+{
+    "version": "0.2.0",
+    "configurations": [	// 调试方案列表
+        // ========================
+        // GCC 64位 调试
+        // ========================
+        {
+            "name": "GCC-64 - 启动调试",	// 调试方案的名字
+            "type": "cppdbg",		// 调试器类型
+            "request": "launch",		// 启动方式：必须是 "launch"（启动）或 "attach"（附加）
+            // program：要调试的文件路径，通常指向你的主入口文件（如 app.js、main.py）。
+            //"program": "${fileDirname}/test.exe", // 工作目录设为当前文件目录（方便读取相对路径资源）
+            "program": "${fileDirname}/test.exe",	// 变量：项目根目录路径
+            "args": [],	// 命令行参数，就是启动程序时传进去的额外数据（如 --port 3000）。
+            "stopAtEntry": false,		//是否在程序入口（main 函数的第一行）自动暂停。设了 false，意思就是“不用一上来就停住，让它直接跑，除非我手动打断点”。
+            "cwd": "${fileDirname}",	// 工作目录设为当前文件目录（方便读取相对路径资源）
+            // 注入环境变量。注意你这里用的是数组格式，每个元素有 name 和 value，相当于告诉系统“启动前先设一个环境变量 ARCH=x64”。
+            // 还有一种更简洁的写法是 "env": { "ARCH": "x64" }，二者作用相同。
+            "environment": [
+                {
+                    "name": "ARCH",		// 目标硬件架构
+                    "value": "x64"
+                }
+            ],
+            // 是否弹出一个独立的外部命令行窗口来运行你的程序。false 表示“不弹出黑框框，输出直接显示在 VS Code 的终端面板里”。
+            "externalConsole": false,
+            // MIMode：指定 GDB 使用的接口模式。
+            // "gdb" 表示让调试器使用 GDB 的 MI（Machine Interface）模式，这是一种专门给机器解析的调试接口，VS Code 通过它和 GDB 聊天。
+            "MIMode": "gdb",
+            // miDebuggerPath：GDB 调试器可执行文件的完整路径。
+            // 你的路径指向了 MinGW-64 里的 gdb.exe。
+            // VS Code 需要知道去哪里找这个程序才能开始调试。
+            // miDebugger 直译就是“使用 MI 接口的调试器程序”。
+            "miDebuggerPath": "D:/_dev_tools/msys64/mingw64/bin/gdb.exe",
+            // 调试器一启动就要执行的一组初始化命令，相当于提前给 GDB 设置好一些偏好。
+            "setupCommands": [
+                {
+                    "text": "-enable-pretty-printing",	// 开启 GDB 的“漂亮打印”功能，让复杂结构体（如 STL 容器）显示更可读。
+                    "ignoreFailures": true		// 如果这条命令执行失败也别中断调试，继续往下走。
+                },
+                {
+                    "text": "-gdb-set disassembly-flavor intel",	// 设置反汇编代码显示风格为 Intel 语法，比 AT&T 语法更常见、更易懂。
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "GCC-64 - 构建项目",	// 启动前自动跑的任务。
+            // 调试日志开关，可以输出 VS Code 和 GDB 之间互相发了什么消息，方便排查问题。
+            "logging": {
+                "moduleLoad": false,	// 不记录模块加载事件（如加载了哪些 .dll/.so）。
+                "trace": false		// 不记录详细的通信跟踪（不会刷屏）。一般调试正常时都保持 false，出问题了才临时打开。
+            }
+        },
+        // ========================
+        // GCC 32位 调试
+        // ========================
+        {
+            "name": "GCC-32 - 启动调试",
+            "type": "cppdbg",
+            "request": "launch",
+            //"program": "${fileDirname}/test.exe",
+            "program": "${fileDirname}/test.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [
+                {
+                    "name": "ARCH",
+                    "value": "x86"
+                }
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "D:/_dev_tools/msys64/mingw32/bin/gdb.exe",
+            "setupCommands": [
+                {
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "GCC-32 - 构建项目",
+            "logging": {
+                "moduleLoad": false,
+                "trace": false
+            }
+        },
+        // ========================
+        // MSVC 64位 调试
+        // ========================
+        {
+            "name": "MSVC-64 - 启动调试",
+            "type": "cppvsdbg",
+            "request": "launch",
+            //"program": "${fileDirname}/test.exe",
+            "program": "${fileDirname}/test.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [
+                {
+                    "name": "PLATFORM",
+                    "value": "x64"
+                }
+            ],
+            //"externalConsole": true,
+            "console": "integratedTerminal",
+            "preLaunchTask": "MSVC-64 - 构建项目",
+            "logging": {
+                "moduleLoad": false,
+                "trace": false
+            }
+        },
+        // ========================
+        // MSVC 32位 调试
+        // ========================
+        {
+            "name": "MSVC-32 - 启动调试",
+            "type": "cppvsdbg",
+            "request": "launch",
+            //"program": "${fileDirname}/test.exe",
+            "program": "${fileDirname}/test.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [
+                {
+                    "name": "PLATFORM",
+                    "value": "x86"
+                }
+            ],
+            //"externalConsole": true,
+            "console": "integratedTerminal",
+            "preLaunchTask": "MSVC-32 - 构建项目",
+            "logging": {
+                "moduleLoad": false,
+                "trace": false
+            }
+        },
+        // ========================
+        // Clang 64位 调试 (使用 GDB)
+        // ========================
+        {
+            "name": "Clang-64 - 启动调试",
+            "type": "cppdbg",
+            "request": "launch",
+            //"program": "${fileDirname}/test.exe",
+            "program": "${fileDirname}/test.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "D:/_dev_tools/msys64/mingw64/bin/gdb.exe",
+            "setupCommands": [
+                {
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Clang-64 - 构建项目",
+            "logging": {
+                "moduleLoad": false,
+                "trace": false
+            }
+        },
+        // ========================
+        // GCC 64位 UCRT 调试 (同样使用 GDB)
+        // ========================
+        {
+            "name": "GCC-64-ucrt - 启动调试",
+            "type": "cppdbg",
+            "request": "launch",
+            //"program": "${fileDirname}/test.exe",
+            "program": "${fileDirname}/test.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [
+                {
+                    "name": "ARCH",
+                    "value": "x64-ucrt"
+                }
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "D:/_dev_tools/msys64/mingw64/bin/gdb.exe",
+            "setupCommands": [
+                {
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "GCC-64-ucrt - 构建项目",
+            "logging": {
+                "moduleLoad": false,
+                "trace": false
+            }
+        }
+    ]
+}

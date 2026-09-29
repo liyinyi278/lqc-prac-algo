@@ -1,0 +1,261 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        // ====================================================================
+        // GCC 64位 (x86_64-w64-mingw32, MinGW Makefiles)
+        // ====================================================================
+        {
+            "label": "GCC-64 - 创建build目录",
+            "type": "shell",
+            "command": "if (-not (Test-Path '${workspaceFolder}/build/gcc-64')) { New-Item -ItemType Directory -Path '${workspaceFolder}/build/gcc-64' -Force }",
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": []
+        },
+        {
+            "label": "GCC-64 - CMake配置",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "../..",
+                "-G", "MinGW Makefiles",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-DCMAKE_C_COMPILER=x86_64-w64-mingw32-gcc",
+                "-DCMAKE_CXX_COMPILER=x86_64-w64-mingw32-g++",
+                "-DSRC_DIR=${workspaceFolder}/src"
+            ],
+            "options": { "cwd": "${workspaceFolder}/build/gcc-64" },
+            "dependsOn": ["GCC-64 - 创建build目录"],
+            "problemMatcher": []
+        },
+        {
+            "label": "GCC-64 - 编译",
+            "type": "shell",
+            "command": "cmake",
+            "args": [ "--build", ".", "--parallel", "8" ],
+            "options": { "cwd": "${workspaceFolder}/build/gcc-64" },
+            "dependsOn": ["GCC-64 - CMake配置"],
+            "group": { "kind": "build", "isDefault": true },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "GCC-64 - 构建项目",
+            "dependsOn": ["GCC-64 - 编译"],
+            "problemMatcher": []
+        },
+
+        // ====================================================================
+        // GCC 32位 (i686-w64-mingw32, MinGW Makefiles)
+        // ====================================================================
+        {
+            "label": "GCC-32 - 创建build目录",
+            "type": "shell",
+            "command": "if (-not (Test-Path '${workspaceFolder}/build/gcc-32')) { New-Item -ItemType Directory -Path '${workspaceFolder}/build/gcc-32' -Force }",
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": []
+        },
+        {
+            "label": "GCC-32 - CMake配置",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "../..",
+                "-G", "MinGW Makefiles",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-DCMAKE_C_COMPILER=i686-w64-mingw32-gcc",
+                "-DCMAKE_CXX_COMPILER=i686-w64-mingw32-g++",
+                "-DSRC_DIR=${workspaceFolder}/src"
+            ],
+            "options": { "cwd": "${workspaceFolder}/build/gcc-32" },
+            "dependsOn": ["GCC-32 - 创建build目录"],
+            "problemMatcher": []
+        },
+        {
+            "label": "GCC-32 - 编译",
+            "type": "shell",
+            "command": "cmake",
+            "args": [ "--build", ".", "--parallel", "8" ],
+            "options": { "cwd": "${workspaceFolder}/build/gcc-32" },
+            "dependsOn": ["GCC-32 - CMake配置"],
+            "group": { "kind": "build", "isDefault": false },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "GCC-32 - 构建项目",
+            "dependsOn": ["GCC-32 - 编译"],
+            "problemMatcher": []
+        },
+
+        // ====================================================================
+        // MSVC 64位 (Visual Studio 17 2022, x64)
+        // ====================================================================
+        {
+            "label": "MSVC-64 - 创建build目录",
+            "type": "shell",
+            "command": "if (-not (Test-Path '${workspaceFolder}/build/msvc-64')) { New-Item -ItemType Directory -Path '${workspaceFolder}/build/msvc-64' -Force }",
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": []
+        },
+        {
+            "label": "MSVC-64 - CMake配置",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "../..",
+                "-G", "Visual Studio 17 2022",
+                "-A", "x64",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-DSRC_DIR=${workspaceFolder}/src"
+            ],
+            "options": { "cwd": "${workspaceFolder}/build/msvc-64" },
+            "dependsOn": ["MSVC-64 - 创建build目录"],
+            "problemMatcher": []
+        },
+        {
+            "label": "MSVC-64 - 编译",
+            "type": "shell",
+            "command": "cmake",
+            "args": [ "--build", ".", "--config", "Debug", "--parallel" ],
+            "options": { "cwd": "${workspaceFolder}/build/msvc-64" },
+            "dependsOn": ["MSVC-64 - CMake配置"],
+            "group": { "kind": "build", "isDefault": false },
+            "problemMatcher": ["$msCompile"]
+        },
+        {
+            "label": "MSVC-64 - 构建项目",
+            "dependsOn": ["MSVC-64 - 编译"],
+            "problemMatcher": []
+        },
+
+        // ====================================================================
+        // MSVC 32位 (Visual Studio 17 2022, Win32)
+        // ====================================================================
+        {
+            "label": "MSVC-32 - 创建build目录",
+            "type": "shell",
+            "command": "if (-not (Test-Path '${workspaceFolder}/build/msvc-32')) { New-Item -ItemType Directory -Path '${workspaceFolder}/build/msvc-32' -Force }",
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": []
+        },
+        {
+            "label": "MSVC-32 - CMake配置",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "../..",
+                "-G", "Visual Studio 17 2022",
+                "-A", "Win32",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-DSRC_DIR=${workspaceFolder}/src"
+            ],
+            "options": { "cwd": "${workspaceFolder}/build/msvc-32" },
+            "dependsOn": ["MSVC-32 - 创建build目录"],
+            "problemMatcher": []
+        },
+        {
+            "label": "MSVC-32 - 编译",
+            "type": "shell",
+            "command": "cmake",
+            "args": [ "--build", ".", "--config", "Debug", "--parallel" ],
+            "options": { "cwd": "${workspaceFolder}/build/msvc-32" },
+            "dependsOn": ["MSVC-32 - CMake配置"],
+            "group": { "kind": "build", "isDefault": false },
+            "problemMatcher": ["$msCompile"]
+        },
+        {
+            "label": "MSVC-32 - 构建项目",
+            "dependsOn": ["MSVC-32 - 编译"],
+            "problemMatcher": []
+        },
+
+        // ====================================================================
+        // Clang 64位 (MSYS2 clang, 使用 Ninja 生成器)
+        // 要求：PATH 中能找到 clang, clang++, ninja
+        // ====================================================================
+        {
+            "label": "Clang-64 - 创建build目录",
+            "type": "shell",
+            "command": "if (-not (Test-Path '${workspaceFolder}/build/clang-64')) { New-Item -ItemType Directory -Path '${workspaceFolder}/build/clang-64' -Force }",
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": []
+        },
+        {
+            "label": "Clang-64 - CMake配置",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "../..",
+                "-G", "Ninja",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-DCMAKE_C_COMPILER=clang",
+                "-DCMAKE_CXX_COMPILER=clang++",
+                "-DSRC_DIR=${workspaceFolder}/src"
+            ],
+            "options": { "cwd": "${workspaceFolder}/build/clang-64" },
+            "dependsOn": ["Clang-64 - 创建build目录"],
+            "problemMatcher": []
+        },
+        {
+            "label": "Clang-64 - 编译",
+            "type": "shell",
+            "command": "cmake",
+            "args": [ "--build", ".", "--parallel", "8" ],
+            "options": { "cwd": "${workspaceFolder}/build/clang-64" },
+            "dependsOn": ["Clang-64 - CMake配置"],
+            "group": { "kind": "build", "isDefault": false },
+            "problemMatcher": ["$gcc"]   // Clang 输出格式与 GCC 兼容
+        },
+        {
+            "label": "Clang-64 - 构建项目",
+            "dependsOn": ["Clang-64 - 编译"],
+            "problemMatcher": []
+        },
+
+        // ====================================================================
+        // GCC 64位 + UCRT (使用 x86_64-w64-mingw32-gcc，链接 UCRT)
+        // 通过编译器/链接器标志指定 -mcrtdll=ucrt
+        // ====================================================================
+        {
+            "label": "GCC-64-ucrt - 创建build目录",
+            "type": "shell",
+            "command": "if (-not (Test-Path '${workspaceFolder}/build/gcc-64-ucrt')) { New-Item -ItemType Directory -Path '${workspaceFolder}/build/gcc-64-ucrt' -Force }",
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": []
+        },
+        {
+            "label": "GCC-64-ucrt - CMake配置",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "../..",
+                "-G", "MinGW Makefiles",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-DCMAKE_C_COMPILER=x86_64-w64-mingw32-gcc",
+                "-DCMAKE_CXX_COMPILER=x86_64-w64-mingw32-g++",
+                "-DCMAKE_C_FLAGS=-mcrtdll=ucrt",
+                "-DCMAKE_CXX_FLAGS=-mcrtdll=ucrt",
+                "-DCMAKE_EXE_LINKER_FLAGS=-mcrtdll=ucrt",
+                "-DSRC_DIR=${workspaceFolder}/src"
+            ],
+            "options": { "cwd": "${workspaceFolder}/build/gcc-64-ucrt" },
+            "dependsOn": ["GCC-64-ucrt - 创建build目录"],
+            "problemMatcher": []
+        },
+        {
+            "label": "GCC-64-ucrt - 编译",
+            "type": "shell",
+            "command": "cmake",
+            "args": [ "--build", ".", "--parallel", "8" ],
+            "options": { "cwd": "${workspaceFolder}/build/gcc-64-ucrt" },
+            "dependsOn": ["GCC-64-ucrt - CMake配置"],
+            "group": { "kind": "build", "isDefault": false },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "GCC-64-ucrt - 构建项目",
+            "dependsOn": ["GCC-64-ucrt - 编译"],
+            "problemMatcher": []
+        }
+
+        // （可选）如需 Clang-32 或 GCC-32-ucrt，只需复制相应块修改架构/编译器名即可
+    ]
+}
