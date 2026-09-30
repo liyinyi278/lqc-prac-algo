@@ -21,7 +21,7 @@ long long tailFactorial(int n, long long result) {
   return tailFactorial(n - 1, result * n);
 }
 
-int tailFabonacci(int n, int beforeTwo, int beforeOne) {
+int tailFibonacci(int n, int beforeTwo, int beforeOne) {
   if (0 == n) {
     return beforeTwo;
   }
@@ -29,5 +29,5 @@ int tailFabonacci(int n, int beforeTwo, int beforeOne) {
     return beforeOne;
   }
 
-  return tailFabonacci(n - 1, beforeOne, beforeOne + beforeTwo) ;
+  return tailFibonacci(n - 1, beforeOne, beforeOne + beforeTwo) ;
 }
