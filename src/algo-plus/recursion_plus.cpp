@@ -21,13 +21,13 @@ long long tailFactorial(int n, long long result) {
   return tailFactorial(n - 1, result * n);
 }
 
-int tailFibonacci(int n, int beforeTwo, int beforeOne) {
+int tailFibonacci(int n, int prevTwo, int prevOne) {
   if (0 == n) {
-    return beforeTwo;
+    return prevTwo;
   }
   if (1 == n) {
-    return beforeOne;
+    return prevOne;
   }
 
-  return tailFibonacci(n - 1, beforeOne, beforeOne + beforeTwo) ;
+  return tailFibonacci(n - 1, prevOne, prevOne + prevTwo) ;
 }
