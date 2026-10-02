@@ -4,7 +4,6 @@
 int tailFibonacci(int n, int prevTwo, int prevOne);
 
 int main(void) {
-  long long result = 1;
   std::cout << "尾递归 -> 斐波那契数列的第5位是：" << tailFibonacci(5, 0, 1)
             << std::endl;
 
@@ -23,5 +22,5 @@ int tailFibonacci(int n, int prevTwo, int prevOne) {
     return prevOne;
   }
 
-  return tailFibonacci(n - 1, prevOne, prevOne + prevTwo);
+  return tailFibonacci(n - 1, prevOne, prevTwo + prevOne );
 }
