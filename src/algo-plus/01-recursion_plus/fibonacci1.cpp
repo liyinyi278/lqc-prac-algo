@@ -15,6 +15,11 @@ int main(void) {
 }
 
 int tailFibonacci(int n, int prevTwo, int prevOne) {
+  // (0 > n)，用于非法输入的检验：
+  if (0 > n) {
+    return -1;
+  }
+  // (0 == n)用于边界基准条件的检查，比如：初始输入 `n=0`。
   if (0 == n) {
     return prevTwo;
   }
