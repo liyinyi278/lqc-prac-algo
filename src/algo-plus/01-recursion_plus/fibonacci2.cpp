@@ -1,12 +1,10 @@
 #include <iostream>
 #include <ostream>
 
-void tailFibonacciOut(int n, int prevTwo, int prevOne);
+void tailFibonacciOut(int n, int current, int next);
 
 int main(void) {
-  long long result = 1;
-
-  std::cout << "5的斐波那契数列是：";
+  std::cout << "F(0)~F(5)的斐波那契数列是：";
   tailFibonacciOut(5, 0, 1);
   std::cout << std::endl;
 
@@ -17,14 +15,15 @@ int main(void) {
   return 0;
 }
 
-void tailFibonacciOut(int n, int prevTwo, int prevOne) {
+/* 打印从 F(0) 到 F(n)，初始调用示例： tailFibonacciOut(5, 0, 1) */
+void tailFibonacciOut(int n, int current, int next) {
   if (n < 0) {
     return;
   }
-  std::cout << prevTwo << " ";
+  std::cout << current << " ";
   if (0 == n) {
     return;
   }
 
-  tailFibonacciOut(n - 1, prevOne, prevTwo + prevOne);
+  tailFibonacciOut(n - 1, next, current + next);
 }
