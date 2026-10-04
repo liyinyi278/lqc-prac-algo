@@ -5,6 +5,7 @@ void printTowerOfHanoi(int n, std::string from, std::string aux,
                        std::string to, int &count3);
 int main() {
   int count3 = 0;
+  
   std::cout << "5个盘子的汉诺塔移动方法：\n\n";
   printTowerOfHanoi(5, "A", "B", "C", count3);
 
@@ -19,7 +20,6 @@ void printTowerOfHanoi(int n, std::string from, std::string aux,
                        std::string to, int &count3) {
   if (1 == n) {
     std::cout << from << "-->" << to << std::endl;
-    // std::cout << std::endl;    
     return;
   }
 
@@ -38,7 +38,6 @@ void printTowerOfHanoi(int n, std::string from, std::string aux,
     ++count3;
     std::cout << "第" << count3 << "次完成3个盘子移动：从" << from << "到" << to
               << "。" << std::endl;
-    // std::cout << std::endl;
   }
 
   return;
