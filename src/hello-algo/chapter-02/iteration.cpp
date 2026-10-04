@@ -7,7 +7,7 @@ int whileLoop(int n);
 int whileLoopII(int n);
 std::string nestedForLoop(int n);
 
-int main(void) {
+int main() {
   int n = 10;
 
   std::cout << forLoop(n) << std::endl;

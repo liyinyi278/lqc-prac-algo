@@ -3,7 +3,7 @@
 
 long long tailFactorial(int n, long long result);
 
-int main(void) {
+int main() {
   long long result = 1;
   std::cout << "尾递归 -> 5的阶乘是：" << tailFactorial(5, result) << std::endl;
 

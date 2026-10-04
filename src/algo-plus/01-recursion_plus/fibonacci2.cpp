@@ -3,7 +3,7 @@
 
 void tailFibonacciOut(int n, int current, int next);
 
-int main(void) {
+int main() {
   std::cout << "F(0)~F(5)的斐波那契数列是：";
   tailFibonacciOut(5, 0, 1);
   std::cout << std::endl;

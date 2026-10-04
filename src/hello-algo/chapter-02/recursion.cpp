@@ -3,7 +3,7 @@
 int recur(int n);
 int tailRecur(int n, int result);
 
-int main(void) {
+int main() {
   int n = 5;
 
   std::cout << "[普通递归]-> 1到" << n << "的和是：" << recur(n) << std::endl;
