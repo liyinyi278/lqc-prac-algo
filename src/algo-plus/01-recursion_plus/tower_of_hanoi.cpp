@@ -1,12 +1,12 @@
 #include <iostream>
-#include <ostream>
 #include <string>
 
 void printTowerOfHanoi(int n, std::string from, std::string aux,
-                       std::string to);
-int main(void) {
-  std::cout << "3个盘子的汉诺塔移动方法：" << std::endl;
-  printTowerOfHanoi(3, "A", "B", "C");
+                       std::string to, int &count3);
+int main() {
+  int count3 = 0;
+  std::cout << "5个盘子的汉诺塔移动方法：\n\n";
+  printTowerOfHanoi(5, "A", "B", "C", count3);
 
   std::cout << std::endl;
   std::cout << "按回车键退出...";
@@ -16,20 +16,30 @@ int main(void) {
 }
 
 void printTowerOfHanoi(int n, std::string from, std::string aux,
-                       std::string to) {
+                       std::string to, int &count3) {
   if (1 == n) {
     std::cout << from << "-->" << to << std::endl;
+    // std::cout << std::endl;    
     return;
   }
-  // if (2 == n) {
-  //   std::cout << from << "-->" << aux << std::endl;
-  //   std::cout << from << "-->" << to << std::endl;
-  //   std::cout << aux << "-->" << to << std::endl;
-  // }
 
-  printTowerOfHanoi(n - 1, from, to, aux);
+  printTowerOfHanoi(n - 1, from, to, aux, count3);
+  if (n >= 3) {
+    std::cout << std::endl;
+  }
+  
   std::cout << from << "-->" << to << std::endl;
-  printTowerOfHanoi(n - 1, aux, from, to);
+  if (n >= 3) {
+    std::cout << std::endl;    
+  }
+  
+  printTowerOfHanoi(n - 1, aux, from, to, count3);
+  if (3 == n) {
+    ++count3;
+    std::cout << "第" << count3 << "次完成3个盘子移动：从" << from << "到" << to
+              << "。" << std::endl;
+    // std::cout << std::endl;
+  }
 
   return;
 }
