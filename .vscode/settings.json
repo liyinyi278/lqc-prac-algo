@@ -104,7 +104,8 @@
     // CMake Tools 默认生成器（当通过状态栏或命令面板配置时使用）
     // 日常构建依赖 tasks，这里只作为“后台配置”的默认值
     // ===========================
-    "cmake.generator": "MinGW Makefiles",
+    // "cmake.generator": "MinGW Makefiles",
+    // "cmake.generator": "MSYS Makefiles",
     "Codegeex.EnableExtension":false,
     "[cpp]": {
         "editor.formatOnSave": false,
