@@ -1,0 +1,29 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "调试当前cpp",
+      "type": "cppdbg",
+      "request": "launch",
+      // 这里的路径必须和 tasks.json 里生成的 exe 路径完全一致
+      "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "lldb",
+      // 指向你的 lldb 路径
+      "miDebuggerPath": "D:/bigdevtools/msys64/clang64/bin/lldb.exe",
+      "setupCommands": [
+        {
+          "description": "为 lldb 启用整齐打印",
+          "text": "settings set target.use-blocks-instead-of-callbacks true", // 可选
+          "ignoreFailures": true
+        }
+      ],
+      // 按 F5 时自动触发上面的编译任务
+      "preLaunchTask": "编译当前cpp"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "编译当前cpp",
+      // "type": "shell",
+      "type": "process",    // 保持 process，绕过 PowerShell
+      //直接使用你的 g++.exe 或 clang++ 的绝对路径
+      "command": "D:/bigdevtools/msys64/clang64/bin/clang++.exe",
+      "args": [
+        "-g",               // 必须加 -g，否则无法调试
+        "-std=c++20",       // 兼容老版本GCC可以设置为c++2a，新版clang完美支持C++20
+        "-Wall",            // 开启警告，帮忙查错
+        "${file}",          // 当前打开的cpp文件
+        "-o",               // 输出参数
+        "${fileDirname}/${fileBasenameNoExtension}.exe" //生成同名exe
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher":["$gcc"],   // Clang 报错格式和 GCC 一样，保留即可
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}
