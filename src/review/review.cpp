@@ -1,8 +1,8 @@
 #include <iostream>
-int addRecur(int n) ;
+int addTailRecur(int n, int result);
 
 int main(){
-  std::cout << "使用递归计算：1 + …… + " << 5 << " = " << addRecur(5) << std::endl;
+  std::cout << "使用尾递归计算：1 + …… + " << 5 << " = " << addTailRecur(5, 0) << std::endl;
   
   std::cout << std::endl;
   std::cout << "按回车键退出...";
@@ -11,10 +11,12 @@ int main(){
   return 0;
 }
 
-int addRecur(int n) {
+// n：设置从1加到n的数；
+// result：用于保存最终的和的变量，在使用时，应该初始化为0；
+int addTailRecur(int n, int result) {
   if (0 == n) {
-    return 0;
+    return result;
   }
 
-  return n + addRecur(n - 1);
+  return addTailRecur(n - 1, result + n);
 }
