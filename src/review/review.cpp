@@ -1,10 +1,10 @@
 #include <iostream>
-long long factorial(int n);
+long long tailFactorial(int n, long long result);
 
 int main() {
-  std::cout << "使用递归计算阶乘: F(" << 5 << ") = " << factorial(5)
+  std::cout << "使用尾递归计算阶乘： F(" << 5 << ") = " << tailFactorial(5, 1)
             << std::endl;
-            
+
   std::cout << std::endl;
   std::cout << "按回车键退出...";
   std::cin.get();
@@ -12,10 +12,11 @@ int main() {
   return 0;
 }
 
-long long factorial(int n) {
+// result：应该初始化为1；
+long long tailFactorial(int n, long long result) {
   if (1 == n) {
-    return 1;
+    return result;
   }
 
-  return n * factorial(n - 1);
+  return tailFactorial(n - 1, result * n);
 }
