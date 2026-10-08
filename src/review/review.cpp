@@ -1,34 +1,46 @@
 #include <iostream>
-void printTailFibonacci(int n, long long current, long long next, int& count);
+#include <string>
+void printTowerOfHanoi(int n, std::string from, std::string aux, std::string to,
+                       int& count3);
 
 int main() {
-  int count = 0;
-  std::cout << "斐波那契数列： F（" << 25 << "） （模式：0， 1）：\n";
-  printTailFibonacci(25, 0, 1, count);
+  std::cout << "汉诺塔-移动" << 5 << "个盘子的完整过程：" << "\n\n";
+  int count3 = 0;
 
-  count = 0;
-  std::cout << "斐波那契数列： F（" << 25 << "） （模式：1， 1）：\n";
-  printTailFibonacci(25, 1, 1, count);
+  printTowerOfHanoi(5, "A", "B", "C", count3);
 
   std::cout << std::endl;
   std::cout << "按回车键退出...";
   std::cin.get();
-  
+
   return 0;
 }
-// current和next，初始化为要打印的斐波那契数列的第1个和第2个起始数字；
-// 初始化时，currnet和next分别可以是：0， 1或 1， 1这两种模式；
-void printTailFibonacci(int n, long long current, long long next, int& count) {
-  if (0 == n) {
-    std::cout << "\n" << std::endl;
+
+void printTowerOfHanoi(int n, std::string from, std::string aux, std::string to,
+                       int& count3) {
+  if (n <= 0) {
     return;
   }
 
-  std::cout << current << "\t";
-  ++count;
-  if (0 == (count % 10)) {
+  if (1 == n) {
+    std::cout << from << "-->" << to << std::endl;
+    return;
+  }
+
+  printTowerOfHanoi(n - 1, from, to, aux, count3);
+  if (n >= 3) {
     std::cout << "\n";
   }
 
-  printTailFibonacci(n - 1, next, current + next, count);
+  std::cout << from << "-->" << to << "\n";
+  if (n >= 3) {
+    std::cout << "\n";
+  }
+
+  printTowerOfHanoi(n - 1, aux, from, to, count3);
+  if (3 == n) {
+    ++count3;
+    std::cout << "第" << count3 << "次完成3个盘子的移动：从" << from << "到"
+              << to << "。\n";
+  }
 }
