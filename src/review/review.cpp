@@ -1,33 +1,31 @@
 #include <iostream>
-#include <stack>
-int forLoopStack(int n) ;
+int multiply(int A, int B);
 
-int main(){
-  std::cout << "利用循环+stack库模拟递归计算：1 + …… + " << 100 << " = " << forLoopStack(100) << std::endl;
-  
+int main() {
+  std::cout << 1 << " * " << 10 << " = " << multiply(1, 10) << std::endl;
+  std::cout << 3 << " * " << 4 << " = " << multiply(3, 4) << std::endl;
+
   std::cout << std::endl;
   std::cout << "按回车键退出...";
   std::cin.get();
-  
+
   return 0;
 }
 
-int forLoopStack(int n) {
-  if (n <= 0) {
+int multiply(int A, int B) {
+  if (A < 0 || B < 0) {
     return -1;
   }
 
-  std::stack<int> stack;
-  int result = 0;
-
-  for (int i = n; i > 0; --i) {
-    stack.push(i);
+  if (A < B) {
+    int temp = A;
+    A = B;
+    B = temp;
   }
 
-  while (!stack.empty()) {
-    result += stack.top();
-    stack.pop();
+  if (1 == B) {
+    return A;
   }
 
-  return result;
+  return (multiply(A, B >> 1) << 1) + (B & 1 ? A : 0);
 }
