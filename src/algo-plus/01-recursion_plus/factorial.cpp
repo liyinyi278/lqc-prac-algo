@@ -15,7 +15,7 @@ int main() {
 }
 
 long long tailFactorial(int n, long long result) {
-  if (0 > n) {
+  if (n < 0) {
     return -1;
   }
   if (0 == n) {
