@@ -2,8 +2,11 @@
 int exponential(int n);
 
 int main() {
-  std::cout << "算法复杂度分析：指数阶[10元素] ：" << exponential(10)
-            << std::endl;
+  std::cout << "算法复杂度分析-注：包含分裂后消失的父细胞 ：" << "\n\n";
+  std::cout << "指数阶[10元素]-每轮分裂后的细胞个数 ：";
+  int count = exponential(10);
+  std::cout << "指数阶[10元素]-最终分裂的所有细胞个数 ：" << count << std::endl;
+
   std::cout << std::endl;
   std::cout << "按回车键退出...";
   std::cin.get();
@@ -20,8 +23,10 @@ int exponential(int n) {  // n：分裂轮数
     for (int j = 0; j < base; ++j) {
       ++count;
     }
+    std::cout << count << " ";
     base *= 2;
   }
+  std::cout << std::endl;
 
   return count;
 }
