@@ -7,12 +7,7 @@ int main() {
   int count3 = 0;
   
   std::cout << "5个盘子的汉诺塔移动方法：\n\n";
-  printTowerOfHanoi(5, "A", "B", "C", count3);
-
-  std::cout << std::endl;
-  std::cout << "按回车键退出...";
-  std::cin.get();
-  
+  printTowerOfHanoi(5, "A", "B", "C", count3);  
   return 0;
 }
 

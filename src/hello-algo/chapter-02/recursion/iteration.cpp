@@ -14,11 +14,6 @@ int main() {
   std::cout << whileLoop(n) << std::endl;
   std::cout << whileLoopII(n) << std::endl;
   std::cout << nestedForLoop(n) << std::endl;
-
-  std::cout << std::endl;
-  std::cout << "按回车键退出...";
-  std::cin.get();
-
   return 0;
 }
 

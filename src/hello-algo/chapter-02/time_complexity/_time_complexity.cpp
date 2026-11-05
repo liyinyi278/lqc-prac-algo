@@ -44,11 +44,6 @@ int main() {
             << std::endl;
   std::cout << "阶乘阶-递归次数[n = 5时]\t --> f(n)：" << factorialRecur(5)
             << std::endl;
-
-  std::cout << std::endl;
-  std::cout << "按回车键退出...";
-  std::cin.get();
-
   return 0;
 }
 

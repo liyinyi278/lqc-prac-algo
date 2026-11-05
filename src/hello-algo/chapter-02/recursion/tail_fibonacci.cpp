@@ -4,11 +4,6 @@ long long tailFib(int n, int current, int next);
 int main() {
   std::cout << "斐波那契数列第" << 7 << "个数字是：" << tailFib(7, 0, 1)
             << std::endl;
-
-  std::cout << std::endl;
-  std::cout << "按回车键退出...";
-  std::cin.get();
-
   return 0;
 }
 

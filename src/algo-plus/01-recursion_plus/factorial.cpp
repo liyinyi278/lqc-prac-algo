@@ -6,11 +6,6 @@ long long tailFactorial(int n, long long result);
 int main() {
   long long result = 1;
   std::cout << "尾递归 -> 5的阶乘是：" << tailFactorial(5, result) << std::endl;
-
-  std::cout << std::endl;
-  std::cout << "按回车键退出...";
-  std::cin.get();
-
   return 0;
 }
 

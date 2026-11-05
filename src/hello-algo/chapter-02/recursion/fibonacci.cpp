@@ -3,11 +3,6 @@ long long fib(int n);
 
 int main() {
   std::cout << "斐波那契数列第" << 7 << "个数字是：" << fib(7) << std::endl;
-
-  std::cout << std::endl;
-  std::cout << "按回车键退出...";
-  std::cin.get();
-
   return 0;
 }
 long long fib(int n) {

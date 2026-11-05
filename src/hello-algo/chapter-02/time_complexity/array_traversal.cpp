@@ -11,11 +11,6 @@ int main() {
 
   std::cout << "算法复杂度分析：线性阶[数组迭代] -> 10个元素："
             << arrayTraversal(nums) << std::endl;
-
-  std::cout << std::endl;
-  std::cout << "按回车键退出...";
-  std::cin.get();
-
   return 0;
 }
 

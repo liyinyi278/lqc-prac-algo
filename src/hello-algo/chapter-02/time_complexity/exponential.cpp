@@ -6,11 +6,6 @@ int main() {
   std::cout << "指数阶[10元素]-每轮分裂后的细胞个数 ：";
   int count = exponential(10);
   std::cout << "指数阶[10元素]-最终分裂的所有细胞个数 ：" << count << std::endl;
-
-  std::cout << std::endl;
-  std::cout << "按回车键退出...";
-  std::cin.get();
-
   return 0;
 }
 

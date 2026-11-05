@@ -6,11 +6,6 @@ int tailFibonacci(int n, int current, int next);
 int main() {
   std::cout << "尾递归 -> 斐波那契数列的第5位是：" << tailFibonacci(5, 0, 1)
             << std::endl;
-
-  std::cout << std::endl;
-  std::cout << "按回车键退出...";
-  std::cin.get();
-
   return 0;
 }
 

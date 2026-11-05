@@ -9,11 +9,6 @@ int main() {
   std::cout << "[普通递归]-> 1到" << n << "的和是：" << recur(n) << std::endl;
   std::cout << "[尾递归]-> 1到" << n << "的和是：" << tailRecur(n, 0)
             << std::endl;
-
-  std::cout << std::endl;
-  std::cout << "按回车键退出...";
-  std::cin.get();
-
   return 0;
 }
 

@@ -4,11 +4,6 @@ int multiply(int A, int B);
 int main() {
   std::cout << 1 << " * " << 10 << " = " << multiply(1, 10) << std::endl;
   std::cout << 3 << " * " << 4 << " = " << multiply(3, 4) << std::endl;
-
-  std::cout << std::endl;
-  std::cout << "按回车键退出...";
-  std::cin.get();
-
   return 0;
 }
 

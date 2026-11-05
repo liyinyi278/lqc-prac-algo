@@ -19,11 +19,6 @@ int main() {
     std::cout << num << " ";
   }
   std::cout << std::endl;
-
-  std::cout << std::endl;
-  std::cout << "按回车键退出...";
-  std::cin.get();
-
   return 0;
 }
 
