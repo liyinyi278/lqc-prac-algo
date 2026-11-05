@@ -1,28 +1,58 @@
 {
   "version": "0.2.0",
   "configurations": [
+    // ============================================================
+    // 方案 ①：cppdbg + gdb
+    // 需要：MSYS2 CLANG64 已安装 gdb
+    //   pacman -S --needed mingw-w64-clang-x86_64-gdb
+    // ============================================================
     {
-      "name": "调试当前cpp",
+      "name": "① gdb 调试 (cppdbg)",
       "type": "cppdbg",
       "request": "launch",
-      // 这里的路径必须和 tasks.json 里生成的 exe 路径完全一致
       "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${fileDirname}",
-      "environment": [],
+      // 【原硬编码】"value": "D:/bigdevtools/msys64/clang64/bin;${env:PATH}"
+      "environment": [
+        {
+          "name": "PATH",
+          "value": "${env:MSYS64_HOME}/clang64/bin;${env:PATH}"
+        }
+      ],
       "externalConsole": false,
-      "MIMode": "lldb",
-      // 指向你的 lldb 路径
-      "miDebuggerPath": "D:/bigdevtools/msys64/clang64/bin/lldb.exe",
+      "MIMode": "gdb",
+      // 【原硬编码】"miDebuggerPath": "D:/bigdevtools/msys64/clang64/bin/gdb.exe",
+      "miDebuggerPath": "${env:MSYS64_HOME}/clang64/bin/gdb.exe",
       "setupCommands": [
         {
-          "description": "为 lldb 启用整齐打印",
-          "text": "settings set target.use-blocks-instead-of-callbacks true", // 可选
+          "description": "为 gdb 启用整齐打印（STL 容器可视化）",
+          "text": "-enable-pretty-printing",
           "ignoreFailures": true
         }
       ],
-      // 按 F5 时自动触发上面的编译任务
+      "preLaunchTask": "编译当前cpp"
+    },
+    // ============================================================
+    // 方案 ②：CodeLLDB + lldb
+    // 需要：VSCode 扩展市场安装 CodeLLDB (vadimcn.vscode-lldb)
+    // 注意：字段与方案 ① 不同 —— 没有 MIMode/miDebuggerPath/setupCommands，
+    //       environment 改名为 env。
+    // ============================================================
+    {
+      "name": "② lldb 调试 (CodeLLDB)",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
+      "args": [],
+      "cwd": "${fileDirname}",
+      // ★ 增加这两行，强制在集成终端运行
+      "terminal": "integrated",
+      // 【原硬编码】"PATH": "D:/bigdevtools/msys64/clang64/bin;${env:PATH}"
+      "env": {
+        "PATH": "${env:MSYS64_HOME}/clang64/bin;${env:PATH}"
+      },
       "preLaunchTask": "编译当前cpp"
     }
   ]

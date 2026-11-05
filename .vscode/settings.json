@@ -76,18 +76,19 @@
         "xtr1common": "cpp",
         "xutility": "cpp"
     },
-
     // ===========================
     // clangd 智能感知：盯住一个主构建目录
     // 平常编码时使用，可根据当前主要工作切换
     // 切换后执行 clangd: Restart language server 即可
     // ===========================
     "clangd.arguments": [
-        // 默认跟随 GCC-64，你可以改为其他目录：
+        // 单文件算法开发无需编译数据库，注释即可；后续若用CMake可改为对应build目录
         // "build/gcc-32"、"build/msvc-32"、"build/msvc-64"、"build/clang-64"、"build/gcc-64-ucrt" 等
-        "--compile-commands-dir=${workspaceFolder}/build/gcc-64",
-
-        // 以下参数与用户级保持同步（在此显式声明，避免遗漏）
+        // "--compile-commands-dir=${workspaceFolder}/build/gcc-64",
+        // 当前项目专属：指定 clang++ 作为驱动，对齐标准库路径与宏定义
+        // 【原硬编码】"--query-driver=D:/bigdevtools/msys64/clang64/bin/clang++.exe"
+        "--query-driver=${env:MSYS64_HOME}/clang64/bin/clang++.exe",
+        // 对齐全局的通用性能/体验参数（必须完整写，否则会被覆盖丢失）
         "--background-index",
         "--pch-storage=disk",
         "--all-scopes-completion",
@@ -99,6 +100,17 @@
         "--clang-tidy",
         "--log=error"
     ],
+    // 可选：强制指定当前项目的 clangd 程序路径
+    // 如果全局 clangd.path 已经正确指向 clang64，这条可以不写；
+    // 如果全局用的是其他版本 clangd（比如 GCC 配套的），取消注释即可强制切换
+    // 【原硬编码】"clangd.path": "D:/bigdevtools/msys64/clang64/bin/clangd.exe",
+    "clangd.path": "${env:MSYS64_HOME}/clang64/bin/clangd.exe",
+
+    // CodeLLDB 用 MSYS2 的 liblldb（可选）。
+    // 不配：CodeLLDB 用自带 liblldb，多数情况可用。
+    // 配：与编译器同源的 liblldb，DWARF/ABI 更一致，但要求 clang64/bin 在 PATH。
+    // 【原硬编码】"lldb.library": "D:/bigdevtools/msys64/clang64/bin/liblldb.dll",
+    // "lldb.library": "${env:MSYS64_HOME}/clang64/bin/liblldb.dll",
 
     // ===========================
     // CMake Tools 默认生成器（当通过状态栏或命令面板配置时使用）
@@ -106,8 +118,9 @@
     // ===========================
     // "cmake.generator": "MinGW Makefiles",
     // "cmake.generator": "MSYS Makefiles",
-    "Codegeex.EnableExtension":false,
+
+    "Codegeex.EnableExtension": false,
     "[cpp]": {
         "editor.formatOnSave": false,
-    },
+    }
 }
